@@ -12,7 +12,7 @@ var m = make(map[string]any)
 
 // Neo4jStudent represents a student entity with its properties.
 type Neo4jStudent interface {
-	GetID() int              // Returns the unique identifier of the student
+	GetID() int64              // Returns the unique identifier of the student
 	GetCreatedAt() time.Time // Returns the creation timestamp of the student
 	GetUpdatedAt() time.Time // Returns the last update timestamp of the student
 	GetRegistrationNumber() string // Returns the student's registration number
