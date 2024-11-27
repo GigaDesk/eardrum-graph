@@ -4,7 +4,7 @@ import "time"
 
 
 type MockStudent struct {
-	Id          int
+	Id          int64
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 	RegistrationNumber string
@@ -19,7 +19,7 @@ type MockStudent struct {
 
 
 
-func (m MockStudent) GetID() int {
+func (m MockStudent) GetID() int64 {
 	return m.Id
 }
 func (m MockStudent) GetCreatedAt() time.Time {
