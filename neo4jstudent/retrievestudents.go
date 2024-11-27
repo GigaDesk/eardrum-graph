@@ -28,7 +28,7 @@ func RetrieveSchoolStudents(n *neo4jutils.Neo4jInstance, schoolid int) ([]Neo4jS
 		s.Props = student.(neo4j.Node).Props
 		studentlist = append(studentlist, s)
 
-		log.Println("added", s.Props["name"])
+		log.Println("added student: ", s.Props["name"])
 	}
 	return studentlist, nil
 }

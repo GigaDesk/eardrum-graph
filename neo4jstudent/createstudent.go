@@ -38,6 +38,11 @@ func mapSchool(s Neo4jStudent) {
 }
 
 // CreateStudents creates new student nodes in a Neo4j database using the provided Neo4jSchool interface and a Neo4jInstance. Returns an error upon failure
+//
+//Note that it is recommended to check if the school you are adding the students to is available in the database. In rare cases the school might not exist and this function will not throw an error
+//
+//Use the function: 
+//  school.CheckSchool(n *neo4jutils.Neo4jInstance, schoolid int) (bool, error)
 func CreateStudent(n *neo4jutils.Neo4jInstance, s Neo4jStudent, schoolid int) error {
 	
 	mapSchool(s) // Map student data to the global m map
@@ -46,9 +51,8 @@ func CreateStudent(n *neo4jutils.Neo4jInstance, s Neo4jStudent, schoolid int) er
 
 	// Log the mapped student data for debugging purposes
 	log.Println("creating neo4j student: ", student)
-
 	// Construct the Cypher query to create a new student node with the mapped properties
-	query := "MATCH (school:School {pk: $schoolid}) CREATE (s:Student $student) CREATE (s)-[:STUDENT_AT]->(school)"
+	query := "MATCH (school:School {pk: $schoolid}) CREATE (s:Student $student) CREATE (s)-[r:STUDENT_AT]->(school)"
 	_, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
 		query,
 		map[string]any{
