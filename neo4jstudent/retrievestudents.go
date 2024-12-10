@@ -1,13 +1,11 @@
 package neo4jstudent
 
 import (
-	"log"
-
 	"github.com/GigaDesk/eardrum-graph/neo4jutils"
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
-// RetrieveStudents retrieves student nodes that belong to a particular school in a Neo4j database using the provided schoolid and a Neo4jInstance. Returns an error upon failure
+// RetrieveSchoolStudents retrieves student nodes that belong to a particular school in a Neo4j database using the provided schoolid and a Neo4jInstance. Returns an error upon failure
 func RetrieveSchoolStudents(n *neo4jutils.Neo4jInstance, schoolid int) ([]Neo4jStudent, error) {
 	result, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
 		"MATCH (student)-[:STUDENT_AT]->(school:School {pk: $schoolid}) RETURN student AS student",
@@ -27,8 +25,6 @@ func RetrieveSchoolStudents(n *neo4jutils.Neo4jInstance, schoolid int) ([]Neo4jS
 		var s Student
 		s.Props = student.(neo4j.Node).Props
 		studentlist = append(studentlist, s)
-
-		log.Println("added student: ", s.Props["name"])
 	}
 	return studentlist, nil
 }
