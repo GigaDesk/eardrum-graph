@@ -12,7 +12,7 @@ var m = make(map[string]any)
 
 // Neo4jSchool represents a school entity with its properties.
 type Neo4jSchool interface {
-	GetID() int              // Returns the unique identifier of the school
+	GetID() int64             // Returns the unique identifier of the school
 	GetCreatedAt() time.Time // Returns the creation timestamp of the school
 	GetUpdatedAt() time.Time // Returns the last update timestamp of the school
 	GetName() string         // Returns the name of the school

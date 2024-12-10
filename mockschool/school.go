@@ -16,8 +16,8 @@ type MockSchool struct {
 
 
 
-func (m MockSchool) GetID() int {
-	return m.Id
+func (m MockSchool) GetID() int64 {
+	return int64(m.Id)
 }
 func (m MockSchool) GetCreatedAt() time.Time {
 	return m.CreatedAt
