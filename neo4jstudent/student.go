@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-//represents students queried from a neo4j database, and yet to be formated into a struct
+//represents a student queried from a neo4j database, and yet to be formated into a struct
 type Student struct{
 	Props map[string] any
 } 
