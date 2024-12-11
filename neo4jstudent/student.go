@@ -38,11 +38,6 @@ func (s Student) GetPhoneNumber() string  {
 	return s.Props["phonenumber"].(string)
 }
 
-// Returns the password associated with the student (e.g., for student access)
-func (s Student) GetPassword() string {
-	return s.Props["password"].(string)
-}
-
 // Returns the student's date of admission
 func (s Student) GetDateOfAdmission()  time.Time   {
 	return s.Props["date_of_admission"].(time.Time)

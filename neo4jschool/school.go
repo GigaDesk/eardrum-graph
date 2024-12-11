@@ -34,11 +34,6 @@ func (s School) GetPhoneNumber() string  {
 	return s.Props["phonenumber"].(string)
 }
 
-// Returns the password associated with the school (e.g., for school access)
-func (s School) GetPassword() string {
-	return s.Props["password"].(string)
-}
-
 // Returns the school's badge
 func (s School) GetBadge()  string   {
 	return s.Props["badge"].(string)
