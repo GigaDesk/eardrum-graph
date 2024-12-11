@@ -8,7 +8,7 @@ import (
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
-var m = make(map[string]any)
+
 
 // Neo4jStudent represents a student entity with its properties.
 type Neo4jStudent interface {
@@ -18,20 +18,18 @@ type Neo4jStudent interface {
 	GetRegistrationNumber() string // Returns the student's registration number
 	GetName() string         // Returns the name of the student
 	GetPhoneNumber() string  // Returns the phone number of the student
-	GetPassword() string     // Returns the password associated with the student (e.g., for student access)
 	GetDateOfAdmission()  time.Time       // Returns the student's date of admission
 	GetDateofBirth() time.Time     // Returns the student's birthday
 	GetProfilePicture() string  //Returns the student profile picture's image url
 }
 
-func mapSchool(s Neo4jStudent) {
+func mapSchool(s Neo4jStudent, m map[string]any) {
 	m["pk"] = s.GetID()
 	m["createdat"] = s.GetCreatedAt()
 	m["updatedat"] = s.GetUpdatedAt()
 	m["registration_number"]= s.GetRegistrationNumber()
 	m["name"] = s.GetName()
 	m["phonenumber"] = s.GetPhoneNumber()
-	m["password"] = s.GetPassword()
 	m["date_of_admission"] = s.GetDateOfAdmission()
 	m["date_of_birth"] = s.GetDateofBirth()
 	m["profile_picture"] = s.GetProfilePicture()
@@ -42,10 +40,11 @@ func mapSchool(s Neo4jStudent) {
 //Note that it is recommended to check if the school you are adding the students to is available in the database. In rare cases the school might not exist and this function will not throw an error
 //
 //Use the function: 
-//  school.CheckSchool(n *neo4jutils.Neo4jInstance, schoolid int) (bool, error)
+//  neo4jschool.CheckSchool(n *neo4jutils.Neo4jInstance, schoolid int) (bool, error)
 func CreateStudent(n *neo4jutils.Neo4jInstance, s Neo4jStudent, schoolid int) error {
+	m := make(map[string]any)
 	
-	mapSchool(s) // Map student data to the global m map
+	mapSchool(s, m) // Map student data to the global m map
 	
 	student := m
 
