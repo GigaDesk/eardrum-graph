@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-//represents students queried from a neo4j database, and yet to be formated into a struct
+//represents a student queried from a neo4j database, and yet to be formated into a struct
 type Student struct{
 	Props map[string] any
 } 
@@ -36,11 +36,6 @@ func (s Student) GetName() string  {
 // Returns the phone number of the student
 func (s Student) GetPhoneNumber() string  {
 	return s.Props["phonenumber"].(string)
-}
-
-// Returns the password associated with the student (e.g., for student access)
-func (s Student) GetPassword() string {
-	return s.Props["password"].(string)
 }
 
 // Returns the student's date of admission

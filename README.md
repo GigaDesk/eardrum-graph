@@ -6,7 +6,8 @@ This Go module provides a robust and efficient interface for interacting with Ne
 - Initializing a connection to a neo4j database
 - Creating a school node in a neo4j database
 - Creating a student node with a `STUDENT_AT` relationship with a school node in a neo4j database
-- Retrieving student nodes with relation to the school they have a `STUDENT_AT` relationship with.    
+- Retrieving student nodes with relation to the school they have a `STUDENT_AT` relationship with.
+- Retrieving school nodes with relation to the student they have a `STUDENT_AT` relationship with.    
 
 ## Technologies 
 
@@ -15,4 +16,8 @@ This Go module provides a robust and efficient interface for interacting with Ne
 
 ## Frameworks and Libraries
 
-- neo4j-go-driver
+- neo4j-go-driver 
+
+## Tests
+
+Tests were carried out to ensure all the key functionalities above could be performed successfully. The testing data is in packages mockschool and mockstudent for school and student data respectively.
