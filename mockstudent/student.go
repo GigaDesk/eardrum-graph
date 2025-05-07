@@ -14,6 +14,7 @@ type MockStudent struct {
 	DateOfAdmission time.Time
 	DateofBirth time.Time
 	ProfilePicture string
+	account_balance_in_cents int64
 }
 
 
@@ -27,6 +28,9 @@ func (m MockStudent) GetCreatedAt() time.Time {
 }
 func (m MockStudent) GetUpdatedAt() time.Time {
 	return m.UpdatedAt
+}
+func (m MockStudent) GetDeletedAt() time.Time {
+	return time.Time{}
 }
 func (m MockStudent) GetRegistrationNumber() string {
 	return m.RegistrationNumber
@@ -48,4 +52,10 @@ func (m MockStudent) GetDateofBirth() time.Time {
 }
 func (m MockStudent) GetProfilePicture() string {
 	return m.ProfilePicture
+}
+func (m MockStudent) GetAccountBalanceInCents() int64{
+    return m.account_balance_in_cents
+}
+func (m MockStudent) GetPinCode() string{
+    return ""
 }
