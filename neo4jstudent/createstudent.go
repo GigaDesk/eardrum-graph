@@ -2,28 +2,13 @@ package neo4jstudent
 
 import (
 	"log"
-	"time"
 
 	"github.com/GigaDesk/eardrum-graph/neo4jutils"
+	"github.com/GigaDesk/eardrum-interfaces/student"
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
-
-
-// Neo4jStudent represents a student entity with its properties.
-type Neo4jStudent interface {
-	GetID() int64              // Returns the unique identifier of the student
-	GetCreatedAt() time.Time // Returns the creation timestamp of the student
-	GetUpdatedAt() time.Time // Returns the last update timestamp of the student
-	GetRegistrationNumber() string // Returns the student's registration number
-	GetName() string         // Returns the name of the student
-	GetPhoneNumber() string  // Returns the phone number of the student
-	GetDateOfAdmission()  time.Time       // Returns the student's date of admission
-	GetDateofBirth() time.Time     // Returns the student's birthday
-	GetProfilePicture() string  //Returns the student profile picture's image url
-}
-
-func mapSchool(s Neo4jStudent, m map[string]any) {
+func mapStudent(s student.Student, m map[string]any) {
 	m["pk"] = s.GetID()
 	m["createdat"] = s.GetCreatedAt()
 	m["updatedat"] = s.GetUpdatedAt()
@@ -33,6 +18,7 @@ func mapSchool(s Neo4jStudent, m map[string]any) {
 	m["date_of_admission"] = s.GetDateOfAdmission()
 	m["date_of_birth"] = s.GetDateofBirth()
 	m["profile_picture"] = s.GetProfilePicture()
+	m["account_balance_in_cents"] = s.GetAccountBalanceInCents()
 }
 
 // CreateStudents creates new student nodes in a Neo4j database using the provided Neo4jSchool interface and a Neo4jInstance. Returns an error upon failure
@@ -41,10 +27,10 @@ func mapSchool(s Neo4jStudent, m map[string]any) {
 //
 //Use the function: 
 //  neo4jschool.CheckSchool(n *neo4jutils.Neo4jInstance, schoolid int) (bool, error)
-func CreateStudent(n *neo4jutils.Neo4jInstance, s Neo4jStudent, schoolid int) error {
+func CreateStudent(n *neo4jutils.Neo4jInstance, s student.Student, schoolid int) error {
 	m := make(map[string]any)
 	
-	mapSchool(s, m) // Map student data to the global m map
+	mapStudent(s, m) // Map student data to the m map
 	
 	student := m
 
