@@ -40,3 +40,6 @@ func (m MockSchool) GetBadge() string {
 func (m MockSchool) GetWebsite() string {
 	return m.Website
 }
+func (m MockSchool) GetDeletedAt() time.Time {
+	return time.Time{}
+}

@@ -34,6 +34,11 @@ func (s School) GetPhoneNumber() string  {
 	return s.Props["phonenumber"].(string)
 }
 
+// Returns the password of the school
+func (s School) GetPassword() string  {
+	return ""
+}
+
 // Returns the school's badge
 func (s School) GetBadge()  string   {
 	return s.Props["badge"].(string)
@@ -42,4 +47,9 @@ func (s School) GetBadge()  string   {
 // Returns the school's website
 func (s School) GetWebsite() string   {
 	return s.Props["website"].(string)
+}
+
+// Returns the last deletion timestamp of the school
+func (s School) GetDeletedAt() time.Time {
+	return time.Time{}
 }

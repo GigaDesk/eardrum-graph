@@ -2,26 +2,13 @@ package neo4jschool
 
 import (
 	"log"
-	"time"
 
 	"github.com/GigaDesk/eardrum-graph/neo4jutils"
+	"github.com/GigaDesk/eardrum-interfaces/school"
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
-
-
-// Neo4jSchool represents a school entity with its properties.
-type Neo4jSchool interface {
-	GetID() int64             // Returns the unique identifier of the school
-	GetCreatedAt() time.Time // Returns the creation timestamp of the school
-	GetUpdatedAt() time.Time // Returns the last update timestamp of the school
-	GetName() string         // Returns the name of the school
-	GetPhoneNumber() string  // Returns the phone number of the school
-	GetBadge() string        // Returns a badge or identifier associated with the school
-	GetWebsite() string      // Returns the website URL of the school
-}
-
-func mapSchool(s Neo4jSchool, m map[string]any) {
+func mapSchool(s school.School, m map[string]any) {
 	m["pk"] = s.GetID()
 	m["createdat"] = s.GetCreatedAt()
 	m["updatedat"] = s.GetUpdatedAt()
@@ -31,8 +18,8 @@ func mapSchool(s Neo4jSchool, m map[string]any) {
 	m["website"] = s.GetWebsite()
 }
 
-// CreateSchool creates a new school node in a Neo4j database using the provided Neo4jSchool interface and a Neo4jInstance. Returns an error upon failure
-func CreateSchool(n *neo4jutils.Neo4jInstance, s Neo4jSchool) error {
+// CreateSchool creates a new school node in a Neo4j database. Returns an error upon failure
+func CreateSchool(n *neo4jutils.Neo4jInstance, s school.School) error {
 	m := make(map[string]any)
 	
 	mapSchool(s, m) // Map school data to the global m map
