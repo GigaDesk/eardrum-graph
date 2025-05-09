@@ -39,7 +39,7 @@ func (t Transaction) GetBalanceBefore() int64 {
 	return t.Props["balance_before"].(int64)
 }
 
-// Returns the student account balance before the transaction
+// Returns the total amount spent in the transaction
 func (t Transaction) GetTotalAmount() int64 {
 	return t.Props["total_amount"].(int64)
 }
