@@ -29,3 +29,27 @@ func RetrieveStudentTransactions(n *neo4jutils.Neo4jInstance, studentid int) ([]
 	}
 	return transactionlist, nil
 }
+
+// RetrieveShopTransactions retrieves transaction nodes that belong to a particular shop in a Neo4j database. Returns an error upon failure
+func RetrieveShopTransactions(n *neo4jutils.Neo4jInstance, shopid int) ([]transaction.Transaction, error) {
+	result, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
+		"MATCH (transaction:Transaction)-[:CONTAINS_PURCHASE]->(purchase:Purchase)-[:INVOLVES_PRODUCT]->(product:Product)-[:SOLD_AT]->(shop:Shop {pk: $shopid}) RETURN transaction AS transaction",
+		map[string]any{
+			"shopid": shopid, // Bind the mapped shopid data to the "$shopid" parameter
+		},
+		neo4j.EagerResultTransformer,
+		neo4j.ExecuteQueryWithDatabase(n.Db))
+	if err != nil {
+		return nil, err
+	}
+
+	var transactionlist []transaction.Transaction
+	// Loop through results and do something with them
+	for _, record := range result.Records {
+		student, _ := record.Get("transaction") // .Get() 2nd return is whether key is present
+		var t Transaction
+		t.Props = student.(neo4j.Node).Props
+		transactionlist = append(transactionlist, t)
+	}
+	return transactionlist, nil
+}
