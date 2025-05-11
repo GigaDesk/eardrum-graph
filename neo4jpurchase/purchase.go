@@ -20,9 +20,9 @@ func (p Purchase) GetTransactionID() int64 {
 	return p.Props["transaction_id"].(int64)
 }
 
-// Returns the total amount spent in the purchase
-func (t Purchase) GetTotalAmount() int64 {
-	return t.Props["total_amount"].(int64)
+// Returns the total amount spent in the purchase in cents
+func (t Purchase) GetTotalAmountInCents() int64 {
+	return t.Props["total_amount_in_cents"].(int64)
 }
 
 // Returns the number of units of a product in the purchase

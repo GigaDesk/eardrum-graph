@@ -15,7 +15,7 @@ func mapPurchase(p purchase.Purchase, m map[string]any) {
 	m["transaction_id"] = p.GetTransactionID()
 	m["product_id"] = p.GetProductID()
 	m["units_bought"] = p.GetUnitsBought()
-	m["total_amount"] = p.GetTotalAmount()
+	m["total_amount_in_cents"] = p.GetTotalAmountInCents()
 }
 
 // CreatePurchase creates a new purchase node and its relationships in Neo4j.
