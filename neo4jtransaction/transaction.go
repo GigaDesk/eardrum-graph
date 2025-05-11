@@ -29,17 +29,17 @@ func (t Transaction) GetDeletedAt() time.Time {
 	return time.Time{}
 }
 
-// Returns the student account balance after the transaction
-func (t Transaction) GetBalanceAfter() int64 {
-	return t.Props["balance_after"].(int64)
+// Returns the student account balance in cents after the transaction
+func (t Transaction) GetBalanceAfterInCents() int64 {
+	return t.Props["balance_after_in_cents"].(int64)
 }
 
-// Returns the student account balance before the transaction
-func (t Transaction) GetBalanceBefore() int64 {
-	return t.Props["balance_before"].(int64)
+// Returns the student account balance in cents before the transaction
+func (t Transaction) GetBalanceBeforeInCents() int64 {
+	return t.Props["balance_before_in_cents"].(int64)
 }
 
-// Returns the total amount spent in the transaction
-func (t Transaction) GetTotalAmount() int64 {
-	return t.Props["total_amount"].(int64)
+// Returns the total amount spent in the transaction in cents
+func (t Transaction) GetTotalAmountInCents() int64 {
+	return t.Props["total_amount_in_cents"].(int64)
 }

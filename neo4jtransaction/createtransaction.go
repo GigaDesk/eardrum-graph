@@ -12,9 +12,9 @@ func mapTransaction(t transaction.Transaction, m map[string]any) {
 	m["pk"] = t.GetID()
 	m["createdat"] = t.GetCreatedAt()
 	m["updatedat"] = t.GetUpdatedAt()
-	m["total_amount"] = t.GetTotalAmount()
-	m["balance_before"] = t.GetBalanceBefore()
-	m["balance_after"] = t.GetBalanceAfter()
+	m["total_amount_in_cents"] = t.GetTotalAmountInCents()
+	m["balance_before_in_cents"] = t.GetBalanceBeforeInCents()
+	m["balance_after_in_cents"] = t.GetBalanceAfterInCents()
 }
 
 // CreateTransaction creates new transaction nodes in a Neo4j database. Returns an error upon failure
