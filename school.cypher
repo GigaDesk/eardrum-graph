@@ -13,3 +13,11 @@ FOR (student:Student) REQUIRE student.pk IS UNIQUE;
 //Create a constraint requiring Student nodes to have unique registration_number properties
 CREATE CONSTRAINT student_registration_number
 FOR (student:Student) REQUIRE student.registration_number IS UNIQUE;
+
+//Create a constraint requiring Shop nodes to have unique pk properties
+CREATE CONSTRAINT shop_pk
+FOR (shop:Shop) REQUIRE shop.pk IS UNIQUE;
+
+//Create a constraint requiring Shop nodes to have unique phonenumber properties
+CREATE CONSTRAINT shop_phonenumber
+FOR (shop:Shop) REQUIRE shop.phonenumber IS UNIQUE;
