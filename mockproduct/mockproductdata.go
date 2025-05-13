@@ -1,0 +1,36 @@
+package mockproduct
+
+import (
+	"time"
+)
+
+var MultipleProductNodes = []MockProduct{
+	{
+		Id:                      3,
+		CreatedAt:               time.Now().UTC(),
+		UpdatedAt:               time.Now().UTC(),
+		Name:                    "Bread",
+		Price_per_unit_in_cents: 5600,
+	},
+	{
+		Id:                      4,
+		CreatedAt:               time.Now().UTC(),
+		UpdatedAt:               time.Now().UTC(),
+		Name:                    "Biscuit",
+		Price_per_unit_in_cents: 7000,
+	},
+	{
+		Id:                      5,
+		CreatedAt:               time.Now().UTC(),
+		UpdatedAt:               time.Now().UTC(),
+		Name:                    "Soda",
+		Price_per_unit_in_cents: 8000,
+	},
+	{
+		Id:                      6,
+		CreatedAt:               time.Now().UTC(),
+		UpdatedAt:               time.Now().UTC(),
+		Name:                    "Sugar",
+		Price_per_unit_in_cents: 6000,
+	},
+}

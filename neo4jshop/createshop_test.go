@@ -33,7 +33,7 @@ func TestCreateShopNode(t *testing.T) {
 		if err := CreateShop(&neo4jInstance, shop, 1); err != nil {
 			t.Error(`Failed to add a shop node`)
 		}
-		result, error := CheckShop(&neo4jInstance, 5) 
+		result, error := CheckShop(&neo4jInstance, int(shop.GetID())) 
 		if error != nil {
 			log.Fatal("Failed to check shop")
 		}

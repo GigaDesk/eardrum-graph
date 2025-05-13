@@ -21,3 +21,11 @@ FOR (shop:Shop) REQUIRE shop.pk IS UNIQUE;
 //Create a constraint requiring Shop nodes to have unique phonenumber properties
 CREATE CONSTRAINT shop_phonenumber
 FOR (shop:Shop) REQUIRE shop.phonenumber IS UNIQUE;
+
+//Create a constraint requiring Product nodes to have unique pk properties
+CREATE CONSTRAINT product_pk
+FOR (product:Product) REQUIRE product.pk IS UNIQUE;
+
+//Create a constraint requiring Transaction nodes to have unique pk properties
+CREATE CONSTRAINT transaction_pk
+FOR (transaction:Transaction) REQUIRE transaction.pk IS UNIQUE;

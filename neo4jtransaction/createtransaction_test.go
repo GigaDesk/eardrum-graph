@@ -45,7 +45,7 @@ func TestCreateTransactionNode(t *testing.T) {
 			t.Error(fmt.Sprintf("student of id %d is not available", student.GetID()))
 		}
 	}
-	//create transaction nodes of primary keys 3,4,5 and 6 to student node of primary key 5
+	//create transaction nodes of primary keys 3,4,5 and 6 to student node of primary key 3
 	for _, transaction := range mocktransaction.MultipleTransactionNodes {
 		if err := CreateTransaction(&neo4jInstance, transaction, 3); err != nil {
 			t.Error(`Failed to add a transaction node`)
