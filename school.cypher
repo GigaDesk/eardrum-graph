@@ -29,3 +29,7 @@ FOR (product:Product) REQUIRE product.pk IS UNIQUE;
 //Create a constraint requiring Transaction nodes to have unique pk properties
 CREATE CONSTRAINT transaction_pk
 FOR (transaction:Transaction) REQUIRE transaction.pk IS UNIQUE;
+
+//Create a constraint requiring Purchase nodes to have unique pk properties
+CREATE CONSTRAINT purchase_pk
+FOR (purchase:Purchase) REQUIRE purchase.pk IS UNIQUE;
