@@ -6,6 +6,10 @@ github.com/GigaDesk/eardrum-interfaces v1.0.2 h1:J0b9d4T1yVqDyD2R3uE1EhI2tAKTTea
 github.com/GigaDesk/eardrum-interfaces v1.0.2/go.mod h1:0S9WexmRQikEw+XbbRB1nfH92k/rbwyPFFCXzi9P0bE=
 github.com/GigaDesk/eardrum-interfaces v1.0.3 h1:CiCXyCKMUSUmyGbg5wa92fBFOIfpZaHE28Ew2RK6N2s=
 github.com/GigaDesk/eardrum-interfaces v1.0.3/go.mod h1:0S9WexmRQikEw+XbbRB1nfH92k/rbwyPFFCXzi9P0bE=
+github.com/GigaDesk/eardrum-interfaces v1.0.4 h1:xQVXT1YEnlOYJYc4lmXA4MvGocpRZbn0LtfvcM9lk4g=
+github.com/GigaDesk/eardrum-interfaces v1.0.4/go.mod h1:0S9WexmRQikEw+XbbRB1nfH92k/rbwyPFFCXzi9P0bE=
+github.com/GigaDesk/eardrum-interfaces v1.0.5 h1:gCXeu32sqJ4OYcw+MCETss/4OATaGz4uqF6NOeua7AI=
+github.com/GigaDesk/eardrum-interfaces v1.0.5/go.mod h1:0S9WexmRQikEw+XbbRB1nfH92k/rbwyPFFCXzi9P0bE=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/neo4j/neo4j-go-driver/v5 v5.26.0 h1:GB3o4VtIGsvU+RmfgvF7L6nt1IpbPZaGtPMtPSOKmvc=
