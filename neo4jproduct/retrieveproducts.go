@@ -32,7 +32,7 @@ func RetrieveShopProducts(n *neo4jutils.Neo4jInstance, shopid int) ([]product.Pr
 
 
 // RetrievePurchasesProduct retrieves a product node that belongs to a particular purchase in a Neo4j database using the provided purchaseid and a Neo4jInstance. Returns an error upon failure
-func RetrievePurchaseProduct(n *neo4jutils.Neo4jInstance, purchaseid int) ([]product.Product, error) {
+func RetrievePurchaseProduct(n *neo4jutils.Neo4jInstance, purchaseid int) (product.Product, error) {
 	result, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
 		"MATCH (purchase:Purchase {pk: $purchaseid})-[:INVOLVES_PRODUCT]->(product:Product) RETURN product AS product",
 		map[string]any{
@@ -52,5 +52,5 @@ func RetrievePurchaseProduct(n *neo4jutils.Neo4jInstance, purchaseid int) ([]pro
 		p.Props = product.(neo4j.Node).Props
 		productlist = append(productlist, p)
 	}
-	return productlist, nil
+	return productlist[0], nil
 }
