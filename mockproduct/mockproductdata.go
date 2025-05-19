@@ -9,7 +9,7 @@ var MultipleProductNodes = []MockProduct{
 		Id:                      3,
 		CreatedAt:               time.Now().UTC(),
 		UpdatedAt:               time.Now().UTC(),
-		Name:                    "Bread",
+		Name:                    "Pen",
 		Price_per_unit_in_cents: 5600,
 	},
 	{
@@ -30,7 +30,7 @@ var MultipleProductNodes = []MockProduct{
 		Id:                      6,
 		CreatedAt:               time.Now().UTC(),
 		UpdatedAt:               time.Now().UTC(),
-		Name:                    "Sugar",
+		Name:                    "Lotion",
 		Price_per_unit_in_cents: 6000,
 	},
 }
