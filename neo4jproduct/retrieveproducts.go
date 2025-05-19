@@ -54,3 +54,28 @@ func RetrievePurchaseProduct(n *neo4jutils.Neo4jInstance, purchaseid int) (produ
 	}
 	return productlist[0], nil
 }
+
+
+// RetrieveCategoryProducts retrieves product nodes that belong to a particular category in a Neo4j database using the provided categoryid and a Neo4jInstance. Returns an error upon failure
+func RetrieveCategoryProducts(n *neo4jutils.Neo4jInstance, categoryid int) ([]product.Product, error) {
+	result, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
+		"MATCH (product)-[:BELONGS_TO]->(category:Category {pk: $categoryid}) RETURN product AS product",
+		map[string]any{
+			"categoryid": categoryid, // Bind the mapped categoryid data to the "$categoryid" parameter
+		},
+		neo4j.EagerResultTransformer,
+		neo4j.ExecuteQueryWithDatabase(n.Db))
+	if err != nil {
+		return nil, err
+	}
+
+	var productlist []product.Product
+	// Loop through results and do something with them
+	for _, record := range result.Records {
+		product, _ := record.Get("product") // .Get() 2nd return is whether key is present
+		var p Product
+		p.Props = product.(neo4j.Node).Props
+		productlist = append(productlist, p)
+	}
+	return productlist, nil
+}
