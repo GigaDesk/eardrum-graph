@@ -28,7 +28,7 @@ func TestCreateSchool(t *testing.T) {
 	if err := CreateSchool(&neo4jInstance, school); err!=nil{
 		t.Error(`Failed to add multiple school nodes`)
 	}
-	result, error := CheckSchool(&neo4jInstance, int(school.GetID())) 
+	result, error, _ := CheckSchool(&neo4jInstance, int(school.GetID())) 
 	if error != nil {
 		log.Fatal("Failed to check school")
 	}
