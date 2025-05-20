@@ -77,3 +77,14 @@ var MultipleSchoolNodes = []MockSchool{
 		Website:     "Kisiischool@ac.ke",
 	},
 }
+
+var UpdatedSchool = MockSchool{
+	Id:          4,
+	CreatedAt:   time.Now().UTC(),
+	UpdatedAt:   time.Now().UTC(),
+	Name:        "London Business School",
+	PhoneNumber: "+254719226150",
+	Password:    "kisbhdbcvukbqiyde327&",
+	Badge:       "badge",
+	Website:     "londonschool@ac.ke",
+}
