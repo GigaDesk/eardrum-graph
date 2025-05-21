@@ -14,7 +14,7 @@ type MockStudent struct {
 	DateOfAdmission time.Time
 	DateofBirth time.Time
 	ProfilePicture string
-	account_balance_in_cents int64
+	Account_balance_in_cents int64
 }
 
 
@@ -54,7 +54,7 @@ func (m MockStudent) GetProfilePicture() string {
 	return m.ProfilePicture
 }
 func (m MockStudent) GetAccountBalanceInCents() int64{
-    return m.account_balance_in_cents
+    return m.Account_balance_in_cents
 }
 func (m MockStudent) GetPinCode() string{
     return ""

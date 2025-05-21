@@ -79,6 +79,7 @@ var MultipleStudentNodes = []MockStudent{
 		DateOfAdmission: time.Now().UTC(),
 		DateofBirth: time.Now().UTC(),
 		ProfilePicture:     "Kisiischool@ac.ke",
+		Account_balance_in_cents: 500,
 	},
 	{
 		Id:          6,
@@ -92,4 +93,18 @@ var MultipleStudentNodes = []MockStudent{
 		DateofBirth: time.Now().UTC(),
 		ProfilePicture:     "Kisiischool@ac.ke",
 	},
+}
+
+var UpdatedStudent = MockStudent{
+		Id:          5,
+		CreatedAt:   time.Now().UTC(),
+		UpdatedAt:   time.Now().UTC(),
+		RegistrationNumber: "SCT-251-025/2072",
+		Name:        "Carlos Okumu Nyambati",
+		PhoneNumber: "+254705136690",
+		Password:    "kisbhdbcvukbqiyde327&",
+		DateOfAdmission: time.Now().UTC(),
+		DateofBirth: time.Now().UTC(),
+		ProfilePicture:     "carlos@ac.ke",
+		Account_balance_in_cents: 5000,
 }
