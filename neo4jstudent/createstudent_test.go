@@ -32,7 +32,7 @@ func TestCreateStudentNode(t *testing.T) {
 		if err := CreateStudent(&neo4jInstance, student, 1); err != nil {
 			t.Error(`Failed to add a student node`)
 		}
-		result, error := CheckStudent(&neo4jInstance, int(student.GetID())) 
+		result, error, _ := CheckStudent(&neo4jInstance, int(student.GetID())) 
 		if error != nil {
 			log.Fatal("Failed to check student")
 		}

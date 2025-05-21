@@ -33,7 +33,9 @@ func TestUpdateSchool(t *testing.T) {
 	}
 
 	// update
-	UpdateSchool(&neo4jInstance, mockschool.UpdatedSchool)
+	if err:=UpdateSchool(&neo4jInstance, mockschool.UpdatedSchool); err!=nil{
+		t.Error(err)
+	}
 
 	//check changes
 	_, err, school := CheckSchool(&neo4jInstance, int(mockschool.UpdatedSchool.GetID()))
