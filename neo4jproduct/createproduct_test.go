@@ -35,7 +35,7 @@ func TestCreateProductNode(t *testing.T) {
 		if err := neo4jshop.CreateShop(&neo4jInstance, shop, 1); err != nil {
 			t.Error(`Failed to add a shop node`)
 		}
-		result, error := neo4jshop.CheckShop(&neo4jInstance, int(shop.GetID()))
+		result, error, _ := neo4jshop.CheckShop(&neo4jInstance, int(shop.GetID()))
 		if error != nil {
 			log.Fatal("Failed to check shop")
 		}
