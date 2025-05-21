@@ -44,7 +44,7 @@ func TestCreatePurchaseNode(t *testing.T) {
 		if err := neo4jstudent.CreateStudent(&neo4jInstance, student, 1); err != nil {
 			t.Error(`Failed to add a student node`)
 		}
-		result, error := neo4jstudent.CheckStudent(&neo4jInstance, int(student.GetID()))
+		result, error, _ := neo4jstudent.CheckStudent(&neo4jInstance, int(student.GetID()))
 		if error != nil {
 			log.Fatal("Failed to check student")
 		}
