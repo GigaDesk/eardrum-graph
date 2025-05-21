@@ -54,3 +54,17 @@ var MultipleShopNodes = []MockShop{
 		ProfilePicture:     "Kisiischool@ac.ke",
 	},
 }
+
+var UpdatedShop = MockShop{
+	Id:          6,
+	CreatedAt:   time.Now().UTC(),
+	UpdatedAt:   time.Now().UTC(),
+	RegistrationNumber: "SCT-251-025/2023",
+	Name:        "Book Shop",
+	PhoneNumber: "+254116063319",
+	Password:    "kisbhdbcvukbqiyde327&",
+	DateOfAdmission: time.Now().UTC(),
+	DateofBirth: time.Now().UTC(),
+	ProfilePicture:     "Kisiischool@ac.ke",
+	Account_balance_in_cents: 8000,
+}
