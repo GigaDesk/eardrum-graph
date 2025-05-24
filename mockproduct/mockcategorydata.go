@@ -32,3 +32,12 @@ var MultipleCategoryNodes = []MockCategory{
 		Description: "These are items that help students maintain personal hygiene and grooming. Products can include soap, sanitizers, tissue paper, and for boarding schools, it could expand to include items like toothpaste, toothbrushes, and hair products",
 	},
 }
+
+
+var UpdatedCategory = MockCategory {
+	Id:                      4,
+	CreatedAt:               time.Now().UTC(),
+	UpdatedAt:               time.Now().UTC(),
+	Name:                    "Drinks and Packaged Food",
+	Description: "This category covers food and drinks that students can consume during breaks or lunch. Items such as packaged food products, canned drinks, bottled water, and healthy snacks like fruits can be included",
+}

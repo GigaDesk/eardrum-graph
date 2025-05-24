@@ -74,7 +74,7 @@ func TestUpdateProductNode(t *testing.T) {
 
 	//throw errors for unupdated price
 	if product.GetPricePerUnitInCents() != mockproduct.UpdatedProduct.GetPricePerUnitInCents() {
-		t.Error("account balance is ", product.GetPricePerUnitInCents(), "instead of ", mockproduct.UpdatedProduct.GetPricePerUnitInCents())
+		t.Error("price is ", product.GetPricePerUnitInCents(), "instead of ", mockproduct.UpdatedProduct.GetPricePerUnitInCents())
 	}
 
 }

@@ -15,7 +15,7 @@ import (
 )
 
 
-func TestRetrieveCategoryNode(t *testing.T) {
+func TestUpdateCategoryNode(t *testing.T) {
 
 	err := godotenv.Load(".env")
 	if err != nil {
@@ -54,27 +54,27 @@ func TestRetrieveCategoryNode(t *testing.T) {
 		}
 	}
 
-	categories, error := RetrieveShopCategories(&neo4jInstance, 5)
-    if error != nil {
-		t.Error(`error retrieving shop categories`)
+	// update
+	if err := UpdateCategory(&neo4jInstance, mockproduct.UpdatedCategory); err != nil {
+		t.Error(err)
 	}
 
-	if len(categories) != 4{
-		t.Error(fmt.Sprintf("length of retrieved categories array is not: %d", 4))
+	//check changes
+	_, err, category := CheckCategory(&neo4jInstance, int(mockproduct.UpdatedCategory.GetID()))
+
+	if err != nil {
+		t.Error(err)
 	}
 
-	for _,s:=range categories{
-	switch s.GetID(){
-	case 3:
-		log.Println(fmt.Sprintf("found category with id %d:", 3))
-	case 4:
-		log.Println(fmt.Sprintf("found category with id %d:", 4))
-	case 5:
-		log.Println(fmt.Sprintf("found category with id %d:", 5))
-	case 6:
-		log.Println(fmt.Sprintf("found category with id %d:", 6))
-	default:
-		t.Error(fmt.Sprintf("found category with id %d:", s.GetID()))
+
+
+	//throw errors for unupdated name
+	if category.GetName() != mockproduct.UpdatedCategory.GetName() {
+		t.Error("name is ", category.GetName(), "instead of ", mockproduct.UpdatedCategory.GetName())
 	}
+
+	//throw errors for unupdated description
+	if category.GetDescription() != mockproduct.UpdatedCategory.GetDescription() {
+		t.Error("description is ", category.GetDescription(), "instead of ", mockproduct.UpdatedCategory.GetDescription())
 	}
 }

@@ -45,7 +45,7 @@ func TestCreateCategoryNode(t *testing.T) {
 		if err := CreateCategory(&neo4jInstance, category, 5); err != nil {
 			t.Error(`Failed to add a category node`)
 		}
-		result, error := CheckCategory(&neo4jInstance, int(category.GetID()))
+		result, error, _ := CheckCategory(&neo4jInstance, int(category.GetID()))
 		if error != nil {
 			log.Fatal("Failed to check category")
 		}
