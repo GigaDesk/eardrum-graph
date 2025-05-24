@@ -11,15 +11,10 @@ import (
 	"github.com/GigaDesk/eardrum-graph/mockproduct"
 	"github.com/GigaDesk/eardrum-graph/neo4jschool"
 	"github.com/GigaDesk/eardrum-graph/neo4jshop"
-	"github.com/GigaDesk/eardrum-graph/neo4jutils"
 	"github.com/joho/godotenv"
 )
 
-var (
-	neo4jInstance neo4jutils.Neo4jInstance
-)
-
-func TestCreateProductNode(t *testing.T) {
+func TestUpdateProductNode(t *testing.T) {
 
 	err := godotenv.Load(".env")
 	if err != nil {
@@ -57,4 +52,29 @@ func TestCreateProductNode(t *testing.T) {
 			t.Error(fmt.Sprintf("product of id %d is not available", product.GetID()))
 		}
 	}
+
+    // update
+	if err := UpdateProduct(&neo4jInstance, mockproduct.UpdatedProduct); err != nil {
+		t.Error(err)
+	}
+
+	//check changes
+	_, err, product := CheckProduct(&neo4jInstance, int(mockproduct.UpdatedProduct.GetID()))
+
+	if err != nil {
+		t.Error(err)
+	}
+
+
+
+	//throw errors for unupdated name
+	if product.GetName() != mockproduct.UpdatedProduct.GetName() {
+		t.Error("name is ", product.GetName(), "instead of ", mockproduct.UpdatedProduct.GetName())
+	}
+
+	//throw errors for unupdated price
+	if product.GetPricePerUnitInCents() != mockproduct.UpdatedProduct.GetPricePerUnitInCents() {
+		t.Error("account balance is ", product.GetPricePerUnitInCents(), "instead of ", mockproduct.UpdatedProduct.GetPricePerUnitInCents())
+	}
+
 }
