@@ -34,3 +34,11 @@ var MultipleProductNodes = []MockProduct{
 		Price_per_unit_in_cents: 6000,
 	},
 }
+
+var UpdatedProduct = MockProduct{
+	Id:                      3,
+	CreatedAt:               time.Now().UTC(),
+	UpdatedAt:               time.Now().UTC(),
+	Name:                    "A4 Book",
+	Price_per_unit_in_cents: 2000,
+}
