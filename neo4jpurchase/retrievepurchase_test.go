@@ -69,7 +69,7 @@ func TestRetrievePurchaseNode(t *testing.T) {
 		if err := neo4jproduct.CreateProduct(&neo4jInstance, product, 5); err != nil {
 			t.Error(`Failed to add a product node`)
 		}
-		result, error := neo4jproduct.CheckProduct(&neo4jInstance, int(product.GetID()))
+		result, error, _ := neo4jproduct.CheckProduct(&neo4jInstance, int(product.GetID()))
 		if error != nil {
 			log.Fatal("Failed to check product")
 		} 
