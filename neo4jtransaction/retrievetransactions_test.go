@@ -47,7 +47,7 @@ func TestRetrieveTransactionNode(t *testing.T) {
 		if err := CreateTransaction(&neo4jInstance, transaction, 3); err != nil {
 			t.Error(`Failed to add a transaction node`)
 		}
-		result, error := CheckTransaction(&neo4jInstance, int(transaction.GetID()))
+		result, error, _ := CheckTransaction(&neo4jInstance, int(transaction.GetID()))
 		if error != nil {
 			log.Fatal("Failed to check transaction")
 		}
