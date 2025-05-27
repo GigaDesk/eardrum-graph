@@ -148,7 +148,7 @@ func TestRetrievePurchaseProduct(t *testing.T) {
 		if err := neo4jtransaction.CreateTransaction(&neo4jInstance, transaction, 3); err != nil {
 			t.Error(`Failed to add a transaction node`)
 		}
-		result, error := neo4jtransaction.CheckTransaction(&neo4jInstance, int(transaction.GetID()))
+		result, error, _ := neo4jtransaction.CheckTransaction(&neo4jInstance, int(transaction.GetID()))
 		if error != nil {
 			log.Fatal("Failed to check transaction")
 		}
@@ -162,7 +162,7 @@ func TestRetrievePurchaseProduct(t *testing.T) {
 		if err := neo4jpurchase.CreatePurchase(&neo4jInstance, purchase); err != nil {
 			t.Error(`Failed to add a purchase node`)
 		}
-		result, error := neo4jpurchase.CheckPurchase(&neo4jInstance, int(purchase.GetID()))
+		result, error, _ := neo4jpurchase.CheckPurchase(&neo4jInstance, int(purchase.GetID()))
 		if error != nil {
 			log.Fatal("Failed to check purchase")
 		}
