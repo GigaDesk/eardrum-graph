@@ -1,4 +1,4 @@
-package neo4jstudent
+package neo4juser
 
 import (
 	"time"

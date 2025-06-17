@@ -1,4 +1,4 @@
-package neo4jstudent
+package neo4juser
 
 import (
 	"github.com/GigaDesk/eardrum-graph/neo4jutils"
