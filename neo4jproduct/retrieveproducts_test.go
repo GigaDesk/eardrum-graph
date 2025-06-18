@@ -8,15 +8,13 @@ import (
 
 	"github.com/GigaDesk/eardrum-graph/mockproduct"
 	"github.com/GigaDesk/eardrum-graph/mockpurchase"
-	"github.com/GigaDesk/eardrum-graph/mockschool"
 	"github.com/GigaDesk/eardrum-graph/mockshop"
-	"github.com/GigaDesk/eardrum-graph/mockstudent"
 	"github.com/GigaDesk/eardrum-graph/mocktransaction"
+	"github.com/GigaDesk/eardrum-graph/mockuser"
 	"github.com/GigaDesk/eardrum-graph/neo4jpurchase"
-	"github.com/GigaDesk/eardrum-graph/neo4jschool"
 	"github.com/GigaDesk/eardrum-graph/neo4jshop"
-	"github.com/GigaDesk/eardrum-graph/neo4jstudent"
 	"github.com/GigaDesk/eardrum-graph/neo4jtransaction"
+	"github.com/GigaDesk/eardrum-graph/neo4juser"
 	"github.com/joho/godotenv"
 )
 
@@ -32,11 +30,9 @@ func TestRetrieveShopProducts(t *testing.T) {
 
 	neo4jInstance.Init(os.Getenv("NEO4J_DBURI"), os.Getenv("NEO4J_DBUSER"), os.Getenv("NEO4J_DBPASSWORD"))
 	defer neo4jInstance.Driver.Close(neo4jInstance.Ctx)
-	//create a school node of primary key 1
-	neo4jschool.CreateSchool(&neo4jInstance, mockschool.SchoolNode)
-	//create shop nodes of primary keys 3,4,5 and 6 to school node of primary key 1
+	//create shop nodes of primary keys 3,4,5 and 6
 	for _, shop := range mockshop.MultipleShopNodes {
-		if err := neo4jshop.CreateShop(&neo4jInstance, shop, 1); err != nil {
+		if err := neo4jshop.CreateShop(&neo4jInstance, shop); err != nil {
 			t.Error(`Failed to add a shop node`)
 		}
 		result, error, _:= neo4jshop.CheckShop(&neo4jInstance, int(shop.GetID()))
@@ -96,28 +92,25 @@ func TestRetrievePurchaseProduct(t *testing.T) {
 	neo4jInstance.Init(os.Getenv("NEO4J_DBURI"), os.Getenv("NEO4J_DBUSER"), os.Getenv("NEO4J_DBPASSWORD"))
 	
 	defer neo4jInstance.Driver.Close(neo4jInstance.Ctx)
-	//create a school node of primary key 1
-	neo4jschool.CreateSchool(&neo4jInstance, mockschool.SchoolNode)
-	//create shop nodes of primary keys 3,4,5 and 6 to school node of primary key 1
 
-	//create a student nodes of primary keys 3,4,5 and 6 to school node of primary key 1
-	for _, student := range mockstudent.MultipleStudentNodes {
-		if err := neo4jstudent.CreateStudent(&neo4jInstance, student, 1); err != nil {
-			t.Error(`Failed to add a student node`)
+	//create user nodes of primary keys 3,4,5 and 6
+	for _, user := range mockuser.MultipleUserNodes {
+		if err := neo4juser.CreateUser(&neo4jInstance, user); err != nil {
+			t.Error(`Failed to add a user node`)
 		}
-		result, error, _ := neo4jstudent.CheckStudent(&neo4jInstance, int(student.GetID()))
+		result, error, _ := neo4juser.CheckUser(&neo4jInstance, int(user.GetID()))
 		if error != nil {
-			log.Fatal("Failed to check student")
+			log.Fatal("Failed to check user")
 		}
 		if !result {
-			t.Error(fmt.Sprintf("student of id %d is not available", student.GetID()))
+			t.Error(fmt.Sprintf("user of id %d is not available", user.GetID()))
 		}
 	}
 
 
-	//create shop nodes of primary keys 3,4,5 and 6 to school node of primary key 1
+	//create shop nodes of primary keys 3,4,5 and 6
 	for _, shop := range mockshop.MultipleShopNodes {
-		if err := neo4jshop.CreateShop(&neo4jInstance, shop, 1); err != nil {
+		if err := neo4jshop.CreateShop(&neo4jInstance, shop); err != nil {
 			t.Error(`Failed to add a shop node`)
 		}
 		result, error, _ := neo4jshop.CheckShop(&neo4jInstance, int(shop.GetID()))

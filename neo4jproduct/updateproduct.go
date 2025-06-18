@@ -12,12 +12,13 @@ import (
 func UpdateProduct(n *neo4jutils.Neo4jInstance, p product.Product) error {
 
 	// Construct the Cypher query to update a Product node with the mapped properties
-	query := "MATCH (p:Product {pk: $pk}) SET p.updatedat = $updatedat, p.name = $name, p.price_per_unit_in_cents = $price_per_unit_in_cents"
+	query := "MATCH (p:Product {pk: $pk}) SET p.updatedat = $updatedat, p.deletedat = $deletedat, p.name = $name, p.price_per_unit_in_cents = $price_per_unit_in_cents"
 	_, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
 		query,
 		map[string]any{
 			"pk":                      p.GetID(),
 			"updatedat":               p.GetUpdatedAt(),
+			"deletedat":               p.GetDeletedAt(),
 			"name":                    p.GetName(),
 			"price_per_unit_in_cents": p.GetPricePerUnitInCents(),
 		}, neo4j.EagerResultTransformer,

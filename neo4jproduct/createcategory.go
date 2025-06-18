@@ -12,6 +12,7 @@ func mapCategory(p product.Category, m map[string]any) {
 	m["pk"] = p.GetID()
 	m["createdat"] = p.GetCreatedAt()
 	m["updatedat"] = p.GetUpdatedAt()
+	m["deletedat"] = p.GetDeletedAt()
 	m["name"] = p.GetName()
 	m["description"] = p.GetDescription()
 }
