@@ -24,7 +24,7 @@ func (c Category) GetUpdatedAt() time.Time {
 
 // Returns the last deletion timestamp of the product category
 func (c Category) GetDeletedAt() time.Time {
-	return time.Time{}
+	return c.Props["deletedat"].(time.Time)
 }
 
 // Returns the name of the product category
