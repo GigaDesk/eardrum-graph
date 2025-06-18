@@ -25,8 +25,8 @@ func (s Shop) GetUpdatedAt() time.Time {
 }
 
 // Returns the last deletion timestamp of the shop
-func (m Shop) GetDeletedAt() time.Time {
-	return time.Time{}
+func (s Shop) GetDeletedAt() time.Time {
+	return s.Props["deletedat"].(time.Time)
 }
 
 // Returns the name of the shop
@@ -46,10 +46,10 @@ func (s Shop) GetAccountBalanceInCents() int64 {
 
 // Returns the security pin code of the shop
 func (s Shop) GetPinCode() string {
-	return ""
+	return s.Props["pin_code"].(string)
 }
 
 // Returns the security password of the shop
 func (s Shop) GetPassword() string {
-	return ""
+	return s.Props["password"].(string)
 }

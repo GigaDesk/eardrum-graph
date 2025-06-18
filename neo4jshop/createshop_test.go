@@ -7,8 +7,6 @@ import (
 	"testing"
 
 	"github.com/GigaDesk/eardrum-graph/mockshop"
-	"github.com/GigaDesk/eardrum-graph/mockschool"
-	"github.com/GigaDesk/eardrum-graph/neo4jschool"
 	"github.com/GigaDesk/eardrum-graph/neo4jutils"
 	"github.com/joho/godotenv"
 )
@@ -26,11 +24,9 @@ func TestCreateShopNode(t *testing.T) {
 
 	neo4jInstance.Init(os.Getenv("NEO4J_DBURI"), os.Getenv("NEO4J_DBUSER"), os.Getenv("NEO4J_DBPASSWORD"))
 	defer neo4jInstance.Driver.Close(neo4jInstance.Ctx)
-	//create a school node of primary key 1
-	neo4jschool.CreateSchool(&neo4jInstance, mockschool.SchoolNode)
-	//create shop nodes of primary keys 3,4,5 and 6 to school node of primary key 1
+	//create shop nodes of primary keys 3,4,5 and 6
 	for _,shop := range mockshop.MultipleShopNodes {
-		if err := CreateShop(&neo4jInstance, shop, 1); err != nil {
+		if err := CreateShop(&neo4jInstance, shop); err != nil {
 			t.Error(`Failed to add a shop node`)
 		}
 		result, error, _ := CheckShop(&neo4jInstance, int(shop.GetID())) 

@@ -12,7 +12,7 @@ import (
 func UpdateUser(n *neo4jutils.Neo4jInstance, s user.User) error {
 
 	// Construct the Cypher query to update a user node with the mapped properties
-	query := "MATCH (s:User {pk: $pk}) SET s.updatedat = $updatedat, s.deletedat = $deletedat, s.name = $name, s.phonenumber = $phonenumber, s.account_balance_in_cents = $account_balance_in_cents, s.password = password, s.pin_code = pin_code"
+	query := "MATCH (s:User {pk: $pk}) SET s.updatedat = $updatedat, s.deletedat = $deletedat, s.name = $name, s.phonenumber = $phonenumber, s.account_balance_in_cents = $account_balance_in_cents, s.password = $password, s.pin_code = $pin_code"
 	_, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
 		query,
 		map[string]any{
