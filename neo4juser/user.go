@@ -26,7 +26,7 @@ func (s User) GetUpdatedAt() time.Time {
 
 // Retuurns the last deletion timestamp of the user
 func (s  User) GetDeletedAt() time.Time {
-	return time.Time{}
+	return s.Props["deletedat"].(time.Time)
 }
 
 // Returns the name of the user
