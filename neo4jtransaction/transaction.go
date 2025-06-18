@@ -26,20 +26,15 @@ func (t Transaction) GetUpdatedAt() time.Time {
 
 // Returns the last deletion timestamp of the transaction
 func (t Transaction) GetDeletedAt() time.Time {
-	return time.Time{}
-}
-
-// Returns the student account balance in cents after the transaction
-func (t Transaction) GetBalanceAfterInCents() int64 {
-	return t.Props["balance_after_in_cents"].(int64)
-}
-
-// Returns the student account balance in cents before the transaction
-func (t Transaction) GetBalanceBeforeInCents() int64 {
-	return t.Props["balance_before_in_cents"].(int64)
+	return t.Props["deletedat"].(time.Time)
 }
 
 // Returns the total amount spent in the transaction in cents
 func (t Transaction) GetTotalAmountInCents() int64 {
 	return t.Props["total_amount_in_cents"].(int64)
+}
+
+// Returns the cost of the transaction in cents
+func (t Transaction) GetTransactionCostInCents() int64 {
+	return t.Props["transaction_cost_in_cents"].(int64)
 }

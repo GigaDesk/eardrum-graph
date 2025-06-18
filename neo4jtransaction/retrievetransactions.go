@@ -6,12 +6,12 @@ import (
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
-// RetrieveStudentTransactions retrieves transaction nodes that belong to a particular student in a Neo4j database using the provided studentid and a Neo4jInstance. Returns an error upon failure
-func RetrieveStudentTransactions(n *neo4jutils.Neo4jInstance, studentid int) ([]transaction.Transaction, error) {
+// RetrieveUserTransactions retrieves transaction nodes that belong to a particular user in a Neo4j database using the provided userid and a Neo4jInstance. Returns an error upon failure
+func RetrieveUserTransactions(n *neo4jutils.Neo4jInstance, userid int) ([]transaction.Transaction, error) {
 	result, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
-		"MATCH (transaction)-[:MADE_BY]->(student:Student {pk: $studentid}) RETURN transaction AS transaction",
+		"MATCH (transaction)-[:MADE_BY]->(user:User {pk: $userid}) RETURN transaction AS transaction",
 		map[string]any{
-			"studentid": studentid, // Bind the mapped studentid data to the "$studentid" parameter
+			"userid": userid, // Bind the mapped userid data to the "$userid" parameter
 		},
 		neo4j.EagerResultTransformer,
 		neo4j.ExecuteQueryWithDatabase(n.Db))

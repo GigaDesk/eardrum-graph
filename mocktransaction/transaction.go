@@ -8,8 +8,7 @@ type MockTransaction struct {
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 	TotalAmountInCents int64
-	BalanceBeforeInCents int64
-	BalanceAfterInCents  int64
+	TransactionCostInCents int64
 }
 
 
@@ -30,9 +29,7 @@ func (m MockTransaction) GetDeletedAt() time.Time {
 func (m MockTransaction) GetTotalAmountInCents() int64 {
 	return m.TotalAmountInCents
 }
-func (m MockTransaction) GetBalanceBeforeInCents() int64 {
-	return m.BalanceBeforeInCents
+func (m MockTransaction) GetTransactionCostInCents() int64 {
+	return m.TransactionCostInCents
 }
-func (m MockTransaction) GetBalanceAfterInCents() int64 {
-	return m.BalanceAfterInCents
-}
+
