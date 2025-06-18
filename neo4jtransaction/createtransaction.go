@@ -12,19 +12,19 @@ func mapTransaction(t transaction.Transaction, m map[string]any) {
 	m["pk"] = t.GetID()
 	m["createdat"] = t.GetCreatedAt()
 	m["updatedat"] = t.GetUpdatedAt()
+	m["deletedat"] = t.GetDeletedAt()
 	m["total_amount_in_cents"] = t.GetTotalAmountInCents()
-	m["balance_before_in_cents"] = t.GetBalanceBeforeInCents()
-	m["balance_after_in_cents"] = t.GetBalanceAfterInCents()
+	m["transaction_cost_in_cents"] = t.GetTransactionCostInCents()
 }
 
 // CreateTransaction creates new transaction nodes in a Neo4j database. Returns an error upon failure
 //
-// Note that it is recommended to check if the student you are adding the transaction to is available in the database. In rare cases the student might not exist and this function will not throw an error
+// Note that it is recommended to check if the user you are adding the transaction to is available in the database. In rare cases the user might not exist and this function will not throw an error
 //
 // Use the function:
 //
-//	neo4jschool.CheckStudent(n *neo4jutils.Neo4jInstance, studentid int) (bool, error)
-func CreateTransaction(n *neo4jutils.Neo4jInstance, t transaction.Transaction, studentid int) error {
+//	neo4juser.CheckUser(n *neo4jutils.Neo4jInstance, userid int) (bool, error)
+func CreateTransaction(n *neo4jutils.Neo4jInstance, t transaction.Transaction, userid int) error {
 	m := make(map[string]any)
 
 	mapTransaction(t, m) // Map transaction data to the m map
@@ -34,11 +34,11 @@ func CreateTransaction(n *neo4jutils.Neo4jInstance, t transaction.Transaction, s
 	// Log the mapped transaction data for debugging purposes
 	log.Println("creating neo4j transaction: ", transaction)
 	// Construct the Cypher query to create a new transaction node with the mapped properties
-	query := "MATCH (student:Student {pk: $studentid}) CREATE (t:Transaction $transaction) CREATE (t)-[r:MADE_BY]->(student)"
+	query := "MATCH (user:User {pk: $userid}) CREATE (t:Transaction $transaction) CREATE (t)-[r:MADE_BY]->(user)"
 	_, err := neo4j.ExecuteQuery(n.Ctx, n.Driver,
 		query,
 		map[string]any{
-			"studentid": studentid, // Bind the mapped studentid data to the "$studentid" parameter
+			"userid": userid, // Bind the mapped userid data to the "$userid" parameter
 			"transaction":  transaction,  // Bind the mapped transaction data to the "$transaction" parameter
 		}, neo4j.EagerResultTransformer,
 		neo4j.ExecuteQueryWithDatabase(n.Db))
