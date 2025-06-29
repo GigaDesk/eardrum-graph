@@ -27,5 +27,6 @@ func (t Purchase) GetTotalAmountInCents() int64 {
 
 // Returns the number of units of a product in the purchase
 func (t Purchase) GetUnitsBought() int {
-	return t.Props["units_bought"].(int)
+	units := t.Props["units_bought"].(int64)
+	return int(units)
 }
